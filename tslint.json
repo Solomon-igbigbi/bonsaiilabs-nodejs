@@ -1,0 +1,12 @@
+{
+  "extends": "tslint:latest",
+  "linterOptions": {
+    "exclude": [
+      "./src/database/prisma/models/*"
+    ]
+  },
+  "rules": {
+    "radix": false,
+    "no-submodule-imports": false
+  }
+}
