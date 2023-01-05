@@ -1,5 +1,5 @@
 import { error } from 'console';
-import userRepository from '../account.repository';
+import { userRepository } from '../account.repository';
 
 const getUsersService = async () => {
   try {
