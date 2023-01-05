@@ -13,4 +13,14 @@ model User {
   password        String 
   createdTimestamp DateTime @default(now())
   updatedTimestamp DateTime @updatedAt
+  post Post[]
+}
+
+model Post {
+  postId String @id @default(uuid())
+  text String
+  createTimestamp DateTime @default(now())
+  updatedTimestamp DateTime @updatedAt
+  userId String
+  user   User @relation(fields: [userId], references: [userId])
 }

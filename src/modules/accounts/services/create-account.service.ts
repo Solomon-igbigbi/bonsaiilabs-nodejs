@@ -1,6 +1,6 @@
 import { RegisterAccountResponseDto } from '../dtos/account.dto';
 import { hashPassword } from '../../../shared/utils/generate-password';
-import userRepository from '../account.repository';
+import { userRepository } from '../account.repository';
 
 /**
  * Register employee account

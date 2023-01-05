@@ -2,7 +2,8 @@ import accountSchemas from './schema/account.schema';
 import accountServices from './services/index.service';
 import schemaValidator from '../../shared/utils/schema-validator.util';
 import ResponseSchema from '../../shared/utils/response-formatter.util';
-import { Request, Response } from 'express';
+import e, { Request, Response } from 'express';
+import { createPost, getPosts } from './services/post.service';
 
 /**
  * @api {POST} /users Register
@@ -47,7 +48,51 @@ const getUsersController = async (req: Request, res: Response) => {
   }
 };
 
+const createPostController = async (req: Request, res: Response) => {
+  try {
+    const requestData = {
+      text: req.body.text,
+      userId: req.params.userId,
+    };
+    const { errors, data } = schemaValidator(accountSchemas.createPostSchema, requestData);
+
+    if (errors) ResponseSchema.INVALID_REQUEST({ response: res, errors: errors });
+
+    const responseData = await createPost(data);
+
+    return ResponseSchema.CREATED({
+      response: res,
+      data: responseData,
+      message: 'created successfully',
+    });
+  } catch (error) {}
+};
+
+const getPostController = async (req: Request, res: Response) => {
+  try {
+    const requestData = {
+      userId: req.params.userId,
+    };
+
+    const { errors, data } = schemaValidator(accountSchemas.getPostSchema, requestData);
+
+    if (errors) ResponseSchema.INVALID_REQUEST({ response: res, errors: errors });
+
+    const responseData = await getPosts(data.userId);
+
+    console.log(data);
+
+    return ResponseSchema.SUCCESS({
+      response: res,
+      data: responseData,
+      message: 'fetched successfully',
+    });
+  } catch (error) {}
+};
+
 export default {
   registerAccountController,
   getUsersController,
+  createPostController,
+  getPostController,
 };

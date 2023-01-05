@@ -1,4 +1,5 @@
 import { prisma } from '../../shared/repositories';
 const userRepository = prisma.user;
+const postRepository = prisma.post;
 
-export default userRepository;
+export { userRepository, postRepository };
