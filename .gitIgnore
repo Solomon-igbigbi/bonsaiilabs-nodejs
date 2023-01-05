@@ -1,0 +1,30 @@
+logs
+*.log
+npm-debug.log*
+.editorConfig
+.env
+.env.prod
+copy.env
+# Coverage directory used by tools like istanbul
+coverage
+reports
+configs/firebase.json
+
+# nyc test coverage
+.nyc_output
+.DS_Store
+
+dist/
+
+# Dependency directories
+node_modules/
+.vscode/
+
+
+public/
+.env
+
+src/database/prisma/migrations/
+
+#local file
+todo
